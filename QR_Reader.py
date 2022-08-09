@@ -9,10 +9,13 @@ from validator import input_validator
 # Return 'YYYY-MM-DD hh:mm'
 def qr_decode(path):
     detect = cv2.QRCodeDetector()
-    img = cv2.imread(path)
-    value, points, straight_qrcode = detect.detectAndDecode(img)
+    try:
+        img = cv2.imread(path)
+        value, points, straight_qrcode = detect.detectAndDecode(img)
 
-    return value
+        return value
+    except:
+        print(f"{path} is not an image.")
 
 
 # Insert all codes in qr_codes to DB
